@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>IoTIK</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{{url_for('static', filename='css/vendors/ti-icons/css/themify-icons.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/vendors/base/vendor.bundle.base.css')}}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{{url_for('static', filename='img/iconiotik2.png')}}" type="image/png">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/chart&graph/circle.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/cuaca/cuaca.css')}}">
+
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+
+    <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
+      <div class="d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo me-5" href="#"><img src="{{url_for('static', filename='img/logoiotik1.png')}}"
+            height="55" width="100" class="me-2" alt="logo" /></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="ti-view-list"></span>
+        </button>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown"
+              style="color: white;">
+              <img src="{{url_for('static', filename='img/user.png')}}" alt="profile" class="rounded-circle" width="60"
+                height="60" />
+              User
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a href="{{('landingpage')}}" class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                Settings
+              </a>
+              <a href="{{('landingpage')}}" class="dropdown-item">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
+          <span class="ti-view-list"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{{('index')}}" style="background-color:rgb(226, 226, 226);">
+              <i class="ti-dashboard menu-icon" style="color: black;"></i>
+              <span class="menu-title" style="color: black;">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{('doorlock')}}">
+              <i class="ti-key menu-icon" style="color: black;"></i>
+              <span class="menu-title" style="color: black;">Door Lock</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{('firedetector')}}">
+              <i class="ti-rss menu-icon" style="color: black;"></i>
+              <span class="menu-title" style="color: black;">Fire Detector</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{('temperature')}}">
+              <i class="ti-ruler menu-icon" style="color: black;"></i>
+              <span class="menu-title" style="color: black;">Temperature Detector</span>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="ti-palette menu-icon"></i>
+              <span class="menu-title">UI Elements</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/forms/basic_elements.html">
+              <i class="ti-layout-list-post menu-icon"></i>
+              <span class="menu-title">Form elements</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/charts/chartjs.html">
+              <i class="ti-pie-chart menu-icon"></i>
+              <span class="menu-title">Charts</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/tables/basic-table.html">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Tables</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/icons/themify.html">
+              <i class="ti-star menu-icon"></i>
+              <span class="menu-title">Icons</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">User Pages</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="documentation/documentation.html">
+              <i class="ti-write menu-icon"></i>
+              <span class="menu-title">Documentation</span>
+            </a>
+          </li> -->
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0 mt-3">Dashboard</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card mb-4">
+
+                <!-- cuaca -->
+                <div class=" dailySummaryContainer-E1_1 Container282">
+                  <div class="hourlyToggle-E1_1 hourlyToggleNewL1-E1_1" role="tablist">
+                    <button
+                      data-t="{&quot;n&quot;:&quot;SummaryToggleBtn&quot;,&quot;a&quot;:&quot;click&quot;,&quot;b&quot;:0}"
+                      id="DailySummaryToggle" data-value="trend" class="active" role="tab" aria-label="Ringkasan">
+                      <span tabindex="-1" title="Ringkasan">
+                        Cuaca
+                      </span>
+                    </button>
+                    <button
+                      data-t="{&quot;n&quot;:&quot;HourlyToggleBtn&quot;,&quot;a&quot;:&quot;click&quot;,&quot;b&quot;:0}"
+                      id="HourlyToggleBtn" data-value="hourly" role="tab" aria-label="Per jam">
+                      <span tabindex="-1" title="Ringkasan">
+                        {{weather.city}}
+                      </span>
+                    </button>
+                    <button
+                      data-t="{&quot;n&quot;:&quot;SummaryToggleBtn&quot;,&quot;a&quot;:&quot;click&quot;,&quot;b&quot;:0}"
+                      id="DailySummaryToggle" data-value="trend" role="tab" aria-label="Ringkasan">
+                      <span tabindex="-1" title="Ringkasan">
+                        <a style="color: #000; text-decoration: none;"
+                          href="https://www.msn.com/id-id/cuaca/prakiraan/in-Tapos,Jawa-Barat?loc=eyJsIjoiVGFwb3MiLCJyIjoiSmF3YSBCYXJhdCIsImMiOiJJbmRvbmVzaWEiLCJpIjoiSUQiLCJnIjoiaWQtaWQiLCJ4IjoiMTA2Ljg4Mjk4Nzk3NjA3NDIyIiwieSI6Ii02LjQwMjI4NjUyOTU0MTAxNiJ9&weadegreetype=C&ocid=msedgntp">Detail
+                          Lainnya </a>
+
+                      </span>
+                    </button>
+                  </div>
+                  <div class="hourlyToggleContent-E1_1">
+                    <div>
+                      <div class="timelineDivContainer-E1_1">
+                        <div class="timelineNoAnimation-E1_1" style="transform:translateX(-0%)">
+                          <div class="daytrendContainer-E1_1" style="height:244px">
+                            <svg width="100%" height="100%"><svg role="img" aria-label="[title + description]"
+                                viewBox="0 0 1285.44 244" preserveAspectRatio="none">
+                                <g class="timeChannel-E1_1">
+                                  <line stroke="rgba(51, 51, 51, 0.2)" x1="0" y1="84.836%" x2="100%" y2="84.836%">
+                                  </line>
+                                </g>
+                                <g class="tempCurve-E1_1">
+                                  <use x="0" y="0" xlink:href="#temperatureCurve"
+                                    style="fill:url(&#x27;#tempGradient&#x27;);mask:url(&#x27;#opacityMask&#x27;);stroke-width:1;box-shadow:inset 0px 2px 0px #000">
+                                  </use>
+                                  <defs>
+                                    <path id="temperatureCurve"
+                                      d="M-37.08,103.5C0.29580269126483216,102.42241096389478,37.67160538252966,101.34482192778954,61.8,103.5C85.92839461747033,105.65517807221046,96.80938116114623,111.0431232527366,111.24,113.85000000000001C125.67061883885376,116.65687674726341,143.65086997288543,116.88268506126407,160.68,113.85000000000001C177.70913002711458,110.81731493873595,193.78713894731203,104.52613650220711,210.12,103.5C226.45286105268798,102.47386349779289,243.04057423786674,106.71276892990751,259.56,103.5C276.07942576213327,100.28723107009249,292.530564101221,89.62278777816285,309,82.80000000000001C325.469435898779,75.97721222183718,341.9571693572492,72.99607995744118,358.44,72.44999999999999C374.9228306427508,71.9039200425588,391.40075846978226,73.7928923920724,407.88,72.44999999999999C424.35924153021773,71.10710760792757,440.83979676362173,66.53235047426908,457.32,62.10000000000001C473.80020323637825,57.66764952573094,490.28005447573037,53.37770571085127,506.76,51.75C523.2399455242696,50.12229428914873,539.719985333457,51.15682668232588,556.1999999999999,51.75C572.6800146665429,52.34317331767412,589.1600041904408,52.494987559845235,605.64,51.75C622.1199958095592,51.005012440154765,638.5999979047796,49.36322307829321,655.0799999999999,51.75C671.5600020952203,54.13677692170679,688.0400041904406,60.55212012698189,704.52,62.10000000000001C720.9999958095593,63.64787987301813,737.4799853334573,60.32829641377928,753.9599999999999,62.10000000000001C770.4400146665425,63.87170358622074,786.9200544757302,70.73469421790107,803.4,72.44999999999999C819.8799455242697,74.16530578209891,836.3597967636215,70.73292671461643,852.8399999999999,72.44999999999999C869.3202032363783,74.16707328538355,885.8007584697824,81.03359892363316,902.28,82.80000000000001C918.7592415302175,84.56640107636686,935.2371693572491,81.23267759085093,951.7199999999999,82.80000000000001C968.2028306427508,84.3673224091491,984.690564101221,90.83569071296318,1001.16,93.14999999999999C1017.629435898779,95.4643092870368,1034.0805742378666,93.6245595572963,1050.6,93.14999999999999C1067.1194257621332,92.67544044270369,1083.7071389473117,93.56607105785153,1100.04,93.14999999999999C1116.3728610526882,92.73392894214845,1132.4508699728856,91.01115621129753,1149.48,93.14999999999999C1166.5091300271145,95.28884378870245,1184.4893811611462,101.28930409695835,1198.9199999999998,103.5C1213.3506188388535,105.71069590304165,1224.2316053825293,104.13162740086904,1248.36,103.5C1272.4883946174705,102.86837259913096,1309.8641973087351,103.18418629956548,1347.24,103.5L1347.24,207C1309.8641973087354,207,1272.4883946174705,207,1248.36,207C1224.2316053825293,207,1213.3506188388533,207,1198.9199999999998,207C1184.4893811611464,207,1166.5091300271147,207.00000000000003,1149.48,207C1132.4508699728854,206.99999999999997,1116.372861052688,207.00000000000003,1100.04,207C1083.707138947312,206.99999999999997,1067.1194257621332,207.00000000000003,1050.6,207C1034.0805742378666,206.99999999999997,1017.6294358987789,207,1001.16,207C984.6905641012211,207,968.2028306427508,207,951.7199999999999,207C935.2371693572491,207,918.7592415302179,207,902.28,207C885.8007584697821,207,869.3202032363779,207.00000000000003,852.8399999999999,207C836.359796763622,206.99999999999997,819.8799455242698,207,803.4,207C786.9200544757301,207,770.4400146665429,207.00000000000003,753.9599999999999,207C737.479985333457,206.99999999999997,720.9999958095591,207,704.52,207C688.0400041904409,207,671.5600020952204,207.00000000000003,655.0799999999999,207C638.5999979047795,206.99999999999997,622.1199958095591,207,605.64,207C589.1600041904409,207,572.6800146665427,207,556.1999999999999,207C539.7199853334572,207,523.2399455242698,207,506.76,207C490.28005447573014,207,473.8002032363781,207,457.32,207C440.8397967636219,207,424.35924153021773,207,407.88,207C391.40075846978226,207,374.92283064275074,207,358.44,207C341.95716935724926,207,325.46943589877907,207,309,207C292.53056410122093,207,276.07942576213316,207,259.56,207C243.04057423786682,207,226.45286105268804,207,210.12,207C193.78713894731197,207,177.70913002711455,207,160.68,207C143.65086997288546,207,125.67061883885378,207,111.24,207C96.8093811611462,207,85.92839461747033,207,61.8,207C37.67160538252966,207,0.29580269126483216,207,-37.08,207Z">
+                                    </path>
+                                  </defs>
+                                </g>
+                              </svg>
+                              <g class="tempLabels-E1_1">
+                                <text x="5.769%" y="38.3%" data-debug="0-0">{{temperature.temperature}}°</text>
+                                <!-- <text x="13.462%" y="42.6%" data-debug="0-2">24°</text> -->
+                                <text x="21.154%" y="38.3%" data-debug="0-4">{{temperature.temperature2}}°</text>
+                                <!-- <text x="28.846%" y="25.6%" data-debug="0-6"> °</text> -->
+                                <text x="36.538%" y="21.4%" data-debug="0-8">{{temperature.temperature3}}°</text>
+                                <!-- <text x="44.231%" y="17.1%" data-debug="0-10">°</text> -->
+                                <text x="51.923%" y="17.1%" data-debug="0-12">{{temperature.temperature4}}°</text>
+                                <!-- <text x="59.615%" y="21.4%" data-debug="0-14">°</text> -->
+                                <text x="67.308%" y="25.6%" data-debug="0-16">{{temperature.temperature5}}°</text>
+                                <!-- <text x="75%" y="29.799999999999997%" data-debug="0-18">{{temperature}}°</text> -->
+                                <text x="82.692%" y="34.1%" data-debug="1-0">{{temperature.temperature6}}°</text>
+                                <!-- <text x="90.385%" y="34.1%" data-debug="1-2">26°</text> -->
+                                <text x="98.077%" y="38.3%" data-debug="1-4">{{temperature.temperature7}}°</text>
+                                <!-- <text x="5.769%" y="38.3%" data-debug="0-0">{{temperature}}°</text>
+                                <text x="13.462%" y="42.6%" data-debug="0-2">24°</text>
+                                <text x="21.154%" y="38.3%" data-debug="0-4">25°</text>
+                                <text x="28.846%" y="25.6%" data-debug="0-6">28°</text>
+                                <text x="36.538%" y="21.4%" data-debug="0-8">29°</text>
+                                <text x="44.231%" y="17.1%" data-debug="0-10">30°</text>
+                                <text x="51.923%" y="17.1%" data-debug="0-12">30°</text>
+                                <text x="59.615%" y="21.4%" data-debug="0-14">29°</text>
+                                <text x="67.308%" y="25.6%" data-debug="0-16">28°</text>
+                                <text x="75%" y="29.799999999999997%" data-debug="0-18">27°</text>
+                                <text x="82.692%" y="34.1%" data-debug="1-0">26°</text>
+                                <text x="90.385%" y="34.1%" data-debug="1-2">26°</text>
+                                <text x="98.077%" y="38.3%" data-debug="1-4">25°</text> -->
+                              </g>
+                              <g class="newTimeLabels-E1_1">
+                                <text x="5.769%" y="94.262%" data-debug="0-0" style="opacity:0.8"> {{jam.jam1[11:16]}}
+                                </text>
+                                <text x="13.462%" y="94.262%" data-debug="0-2" style="opacity:0.8"></text>
+                                <text x="21.154%" y="94.262%" data-debug="0-4"
+                                  style="opacity:0.8">{{jam.jam2[11:16]}}</text>
+                                <!-- <text x="28.846%" y="94.262%" data-debug="0-6" style="opacity:0.8">10:00</text> -->
+                                <text x="36.538%" y="94.262%" data-debug="0-8"
+                                  style="opacity:0.8">{{jam.jam3[11:16]}}</text>
+                                <!-- <text x="44.231%" y="94.262%" data-debug="0-10" style="opacity:0.8">14:00</text> -->
+                                <text x="51.923%" y="94.262%" data-debug="0-12"
+                                  style="opacity:0.8">{{jam.jam4[11:16]}}</text>
+                                <!-- <text x="59.615%" y="94.262%" data-debug="0-14" style="opacity:0.8">18:00</text> -->
+                                <text x="67.308%" y="94.262%" data-debug="0-16"
+                                  style="opacity:0.8">{{jam.jam5[11:16]}}</text>
+                                <!-- <text x="75%" y="94.262%" data-debug="0-18" style="opacity:0.8">22:00</text>
+                                <text x="82.692%" y="94.262%" data-debug="1-0" style="opacity:0.8">00:00</text>
+                                <text x="90.385%" y="94.262%" data-debug="1-2" style="opacity:0.8">02:00</text>
+                                <text x="98.077%" y="94.262%" data-debug="1-4" style="opacity:0">04:00</text> -->
+                              </g>
+                              <!-- <g class="precipLabels-E1_1">
+                                <text x="5.769230769230769%" y="80.328%">--</text>;<text x="13.461538461538463%"
+                                  y="80.328%">17%</text>;<text x="21.153846153846157%" y="80.328%">28%</text>;<text
+                                  x="28.84615384615385%" y="80.328%">36%</text>;<text x="36.53846153846154%"
+                                  y="80.328%">24%</text>;<text x="44.23076923076923%" y="80.328%">16%</text>;<text
+                                  x="51.92307692307693%" y="80.328%">25%</text>;<text x="59.61538461538461%"
+                                  y="80.328%">22%</text>;<text x="67.3076923076923%" y="80.328%">12%</text>;<text
+                                  x="75%" y="80.328%">7%</text>;<text x="82.6923076923077%" y="80.328%">7%</text>;<text
+                                  x="90.38461538461539%" y="80.328%">12%</text>;<text x="98.07692307692308%"
+                                  y="80.328%">25%</text>;</g> -->
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="noData-E1_2" style="display:none;height:244px"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title mb-0">Temperature</p>
+                  <div class="table-responsive">
+                    <div class="card-body p-4">
+                      <div class="row">
+
+                        <div class="col-xl-4 col-md-6 mb-xl-0 mb-4">
+                          <div class="card card-blog card-plain">
+                            <div class="text-center justify-content-center mt-2">
+                              <div class="pie no-round mt-3" style="--p:{{fire}};--c:red;--b:10px; ">
+                                {{temperature.temperature}}°
+                              </div>
+
+                              <div class=" card-body px-2 pb-0 text-center">
+                                <p class="text-gradient text-dark mb-2 text-sm">Fire Detector</p>
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <!-- <button type="button" class="btn btn-primary btn-icon-text btn-auto mb-2"
+                                    style="color: white;">
+                                    View
+                                    <i class="ti-stats-up btn-icon-prepend"></i>
+                                  </button> -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 mb-xl-0 mb-4">
+                          <div class="card card-blog card-plain">
+                            <!-- <div class="position-relative">
+                              <a class="d-block shadow-md border-radius-xl">
+                                <img src="{{url_for('static', filename='img/home-decor-1.jpg')}}" alt="img-blur-shadow"
+                                  class="img-fluid shadow border-radius-xl">
+                              </a>
+                            </div> -->
+                            <div class="text-center justify-content-center mt-2">
+
+                              <div class="pie no-round mt-3" style="--p:{{fire}};--c:grey;--b:15px; ">
+                                {{temperature.temperature}}°
+
+                              </div>
+
+                              <div class="card-body px-2 pb-0 text-center">
+                                <p class="text-gradient text-dark text-sm">Temperature Detector</p>
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <!-- <button type="button" class="btn btn-primary btn-icon-text btn-auto mb-2"
+                                    style="color: white;"><a style="color: white; text-decoration: none;"
+                                      href="{{('temperature')}}">
+                                      View
+                                      <i class="ti-stats-up btn-icon-prepend"></i></a>
+                                  </button> -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-xl-0 mb-4">
+                          <div class="card card-blog card-plain">
+                            <div class="text-center justify-content-center mt-2">
+                              <div class="pie no-round mt-3" style="--p:100;--c:blue;--b:20px; ">
+
+                                <i class="fa fa-unlock fa-2x" aria-hidden="true"></i>
+                              </div>
+                              <!-- <div class="position-relative">
+                              <a class="d-block shadow-md border-radius-xl">
+                                <img src="{{url_for('static', filename='img/home-decor-1.jpg')}}" alt="img-blur-shadow"
+                                  class="img-fluid shadow border-radius-xl">
+                              </a>
+                            </div> -->
+
+                              <div class="card-body px-2 pb-0">
+                                <p class="text-gradient text-dark mb-2 text-sm">Door Lock</p>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title mb-0">Door Lock</p>
+                  <div class="table-responsive">
+                    <div class="card-body p-4">
+                      <i class="ti-key menu-icon" style="color: black;"></i>
+                      <span class="menu-title " style="color: black; padding-right: 590px;">House Entry - Door
+                        Lock</span>
+                      <button type="button" class="btn" style="color: #000;">
+                        {Unlock}
+                      </button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class=" footer">
+
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{{url_for('static', filename='css/vendors/base/vendor.bundle.base.js')}}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="{{url_for('static', filename='css/vendors/chart.js/Chart.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/jquery.cookie.js')}}" type="text/javascript"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{{url_for('static', filename='js/off-canvas.js')}}"></script>
+  <script src="{{url_for('static', filename='js/hoverable-collapse.js')}}"></script>
+  <script src="{{url_for('static', filename='js/template.js')}}"></script>
+  <script src="{{url_for('static', filename='js/todolist.js')}}"></script>
+  <script src="{{url_for('static', filename='js/cuaca.js')}}"></script>
+  <script src="{{url_for('static', filename='js/cuaca2.js')}}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{{url_for('static', filename='js/dashboard.js')}}"></script>
+  <!-- icon font awesome -->
+  <script src="https://kit.fontawesome.com/6554b17c0d.js" crossorigin="anonymous"></script>
+  <!-- End custom js for this page-->
+
+</body>
+
+</html>
