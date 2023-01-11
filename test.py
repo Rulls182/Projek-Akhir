@@ -4,38 +4,10 @@ from tkinter.messagebox import RETRY
 from colorama import Cursor
 from flask import Flask, jsonify, flash, redirect, render_template, request, url_for, Blueprint
 import mysql.connector, urllib.request, json, requests
-import xml.etree.ElementTree as ET 
-import xml.dom.minidom as MD
 
 
 application = Flask(__name__)
 application.secret_key = "abc"
-
-#mengubah kelvin ke celcius
-def k2c(kelvin):
-    c = float(kelvin) - 273.15
-    return round (c)
-
-#print xml dengan format pretty 
-def prettyxml(root):
-    return MD.parseString(ET.tostring(root)).toprettyxml()
-
-#cuaca 
-# def cuaca():
-#     appid = 'cadb4f8880792c163567e70aa67d122f'
-#     lat = '-6.36'
-#     lon = '106.81'
-#     url = 'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude=hourly,daily&appid={appid}'
-#     url = url.format(lat=lat, lon=lon, appid=appid)
-#     mentah = urllib.request.urlopen
-#     root = ET.fromstring(mentah.decode())
-
-#     kota = root.findall('timezone')
-#     temperature = root.findall('temperature')
-#     tekanan = root.findall('pressure')
-#     kelembapan = root.findall('humadity')
-
-#     return render_template(kota=kota, temperature=temperature, tekanan=tekanan, kelembapan=kelembapan)
 
 
 def getMysqlConnection():
@@ -115,54 +87,7 @@ def dashboardd():
 
 @application.route('/index')
 def index():
-    appid = 'cadb4f8880792c163567e70aa67d122f'
-    lat = '-6.291744211707815'
-    lon = '106.84260940551759'
-    url = 'https://api.openweathermap.org/data/2.5/' + \
-    'forecast?lat={lat}&lon={lon}&appid={appid}'
-    r = requests.get(url.format(lat=lat, lon=lon, appid=appid)).json()
-
-    print(r)
-    weather = {
-        'city' : r['city']['name'],
-        # # 'temp' : r['current']['temp'],
-        # 'suhu' : r['current']['humidity'],
-        # 'kelembapan' : r['current']['pressure'],
-    }
-
-    jam = {
-        'jam1' : r['list'][1]['dt_txt'],
-        'jam2' : r['list'][2]['dt_txt'],
-        'jam3' : r['list'][3]['dt_txt'],
-        'jam4' : r['list'][4]['dt_txt'],
-        'jam5' : r['list'][5]['dt_txt'],
-        'jam6' : r['list'][6]['dt_txt'],
-        'jam7' : r['list'][7]['dt_txt'],
-    }
-
-    temp = {
-        'temp1' : r['list'][1]['main']['temp'],     
-        'temp2' : r['list'][2]['main']['temp'],
-        'temp3' : r['list'][3]['main']['temp'],
-        'temp4' : r['list'][4]['main']['temp'],
-        'temp5' : r['list'][5]['main']['temp'],
-        'temp6' : r['list'][6]['main']['temp'],
-        'temp7' : r['list'][7]['main']['temp'],
-    }
-  
-    temperature = {
-        'temperature' : k2c(temp['temp1']),
-        'temperature2': k2c(temp['temp2']),
-        'temperature3': k2c(temp['temp3']),
-        'temperature4': k2c(temp['temp4']),
-        'temperature5' : k2c(temp['temp5']),
-        'temperature6' : k2c(temp['temp6']),
-        'temperature7' : k2c(temp['temp7']),
-    }
-    fire = temperature['temperature'] * 2
-    # temperature = k2c(temperature['temp1']) 
-
-    return render_template('index.html', weather=weather, jam=jam, temperature=temperature, fire=fire)
+    return render_template('index.html')
 
 @application.route('/temperature')
 def temperature():
